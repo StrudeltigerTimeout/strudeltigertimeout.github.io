@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#fbf4e6">
+<title>Digital Detox</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="preload" href="fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/gochi.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Auszeit">
+<style>
+@font-face{font-family:Fraunces;src:url(fonts/fraunces.woff2) format('woff2');font-weight:600 900;font-display:swap}
+@font-face{font-family:Gochi;src:url(fonts/gochi.woff2) format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:Nunito;src:url(fonts/nunito.woff2) format('woff2');font-weight:400 800;font-display:swap}
+
+:root{
+  --creme:#fbf4e6;--papier:#fffaf1;--tinte:#3a1d22;--leise:#7b5f60;
+  --kirsch:#c8323b;--wein:#7a1630;--rosa:#f6b7c3;--rosa2:#fbdce2;
+  --petrol:#0f5f61;--mint:#6fb0ae;--wald:#3f6b4a;--blobrand:#628f6c;--zitrone:#f7f0b5;
+  --butter:#fbd872;--flieder:#c3c6f5;--orange:#f5a961;--salbei:#a9c79a;
+  --hand:Gochi,"Comic Sans MS",cursive;--serif:Fraunces,Georgia,serif;
+}
+.f-rosa{--bg:#f6b7c3;--bg2:#f9cdd6;--ink:#8e1b33;--stempel:#8e1b33}
+.f-flieder{--bg:#c3c6f5;--bg2:#d5d7f9;--ink:#2f338a;--stempel:#2f338a}
+.f-butter{--bg:#fbd872;--bg2:#fde59c;--ink:#6e3c00;--stempel:#c8323b}
+.f-petrol{--bg:#86c4c1;--bg2:#a5d5d2;--ink:#0b4a4c;--stempel:#0b4a4c}
+.f-orange{--bg:#f5a961;--bg2:#f8c18d;--ink:#6b2a0b;--stempel:#7a1630}
+.f-kirsch{--bg:#d23f48;--bg2:#dc5d65;--ink:#fff3e6;--stempel:#fff3e6}
+.f-salbei{--bg:#a9c79a;--bg2:#bfd7b2;--ink:#24452c;--stempel:#24452c}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;color:var(--tinte);background-color:var(--creme);
+  background-image:linear-gradient(rgba(200,50,59,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(200,50,59,.07) 1px,transparent 1px);
+  background-size:22px 22px;font:17px/1.55 Nunito,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+main{max-width:640px;margin:0 auto;padding:max(10px,env(safe-area-inset-top)) 16px 30px}
+h1,h2,h3{font-family:var(--serif);font-weight:800;line-height:1.1;margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.hand{font-family:var(--hand);font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+
+/* Zackenränder wie bei einem Ticket */
+.zacken{-webkit-mask:radial-gradient(8px at 0 50%,#0000 97%,#000) 0 50%/51% 24px repeat-y,radial-gradient(8px at 100% 50%,#0000 97%,#000) 100% 50%/51% 24px repeat-y;
+  mask:radial-gradient(8px at 0 50%,#0000 97%,#000) 0 50%/51% 24px repeat-y,radial-gradient(8px at 100% 50%,#0000 97%,#000) 100% 50%/51% 24px repeat-y}
+.bogen-oben{-webkit-mask:radial-gradient(11px at 50% 0,#0000 97%,#000) 50% 0/28px 100% repeat-x;mask:radial-gradient(11px at 50% 0,#0000 97%,#000) 50% 0/28px 100% repeat-x}
+.bogen-unten{-webkit-mask:radial-gradient(11px at 50% 100%,#0000 97%,#000) 50% 100%/28px 100% repeat-x;mask:radial-gradient(11px at 50% 100%,#0000 97%,#000) 50% 100%/28px 100% repeat-x}
+
+/* Kopf */
+.hero{position:relative;text-align:center;padding:34px 0 26px}
+.hero h1{font-size:clamp(60px,19vw,104px);line-height:.92;font-weight:900;letter-spacing:-.01em;margin:18px 0 10px}
+.hero .unter{font-family:var(--hand);font-size:clamp(16px,4.9vw,22px);color:var(--wein);margin:0}
+.deko{position:absolute;pointer-events:none;animation:funkeln 3.2s ease-in-out infinite}
+.deko svg{width:100%;height:100%;display:block}
+@keyframes funkeln{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(.72) rotate(14deg)}}
+.chip-ticket{display:inline-block;background:var(--rosa);color:var(--kirsch);padding:9px 20px;filter:none}
+.chip-ticket .rand{display:flex;align-items:center;gap:10px;border:2px solid var(--kirsch);border-radius:6px;padding:4px 14px;font-size:24px;line-height:1.1}
+.chip-ticket svg{width:22px;height:22px;flex:none}
+
+/* Laufband */
+.band{margin:6px -40px 22px;background:var(--butter);transform:rotate(-2.2deg);padding:12px 0;overflow:hidden;white-space:nowrap;
+  -webkit-mask:radial-gradient(6px at 50% 0,#0000 97%,#000) 50% 0/15px 51% repeat-x,radial-gradient(6px at 50% 100%,#0000 97%,#000) 50% 100%/15px 51% repeat-x;
+  mask:radial-gradient(6px at 50% 0,#0000 97%,#000) 50% 0/15px 51% repeat-x,radial-gradient(6px at 50% 100%,#0000 97%,#000) 50% 100%/15px 51% repeat-x}
+.band .lauf{display:inline-block;animation:lauf 26s linear infinite;font-family:var(--hand);font-weight:700;font-size:21px;text-transform:uppercase;color:var(--wein)}
+.band .lauf span{margin:0 14px}
+@keyframes lauf{to{transform:translateX(-50%)}}
+
+/* Karten und Blätter */
+.brief{background:var(--rosa2);padding:30px 22px 20px;margin:18px 0;border-radius:0 0 18px 18px}
+.brief .hand{color:var(--kirsch);font-size:30px;margin-bottom:4px;text-transform:none}
+.brief p{margin:.55em 0}
+.brief .von{font-family:var(--hand);font-weight:700;font-size:24px;text-align:right;color:var(--kirsch);margin-top:10px}
+.blatt{background:var(--papier);border:2px solid var(--tinte);border-radius:18px;padding:18px 18px;margin:16px 0;box-shadow:4px 5px 0 var(--tinte)}
+.blatt h2{font-size:24px;margin-bottom:8px}
+.blatt p{margin:.5em 0}
+details.blatt summary{font:800 21px var(--serif);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details.blatt summary::-webkit-details-marker{display:none}
+details.blatt summary::after{content:"+";font-family:var(--hand);font-size:30px;line-height:1;transition:transform .2s}
+details.blatt[open] summary::after{transform:rotate(45deg)}
+details.blatt ul{padding-left:20px}
+details.blatt li{margin:6px 0}
+
+/* Fortschritt */
+.fortschritt{text-align:center;margin:26px 0 8px}
+.fortschritt .hand{font-size:22px;color:var(--wald);text-transform:none}
+.sterne{display:flex;justify-content:center;gap:6px;margin:8px 0 4px;flex-wrap:wrap}
+.stern{width:40px;height:40px;display:block;color:var(--tinte);opacity:.35;transition:transform .2s}
+.stern svg{width:100%;height:100%}
+.stern.an{opacity:1;animation:hüpf .5s ease-out}
+.stern.an svg path{fill:var(--bg)}
+.stern:hover{transform:rotate(-10deg) scale(1.1)}
+@keyframes hüpf{50%{transform:scale(1.25)}}
+.fortschritt p{margin:2px 0;color:var(--leise);font-size:15px}
+
+/* Filter */
+.filter{margin:24px 0 10px}
+.filter .label{font-family:var(--hand);font-weight:700;font-size:20px;text-transform:uppercase;color:var(--wein);margin:14px 0 6px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{border:2px solid var(--tinte);background:var(--papier);border-radius:999px;padding:6px 14px;font-weight:700;font-size:15px;cursor:pointer;transition:transform .12s}
+.chip:active{transform:scale(.95)}
+.chip.an{background:var(--kirsch);border-color:var(--kirsch);color:var(--papier)}
+.knopf{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:15px 18px;margin:14px 0 0;border:2px solid var(--tinte);border-radius:999px;
+  background:var(--kirsch);color:var(--papier);font:800 19px var(--serif);text-decoration:none;cursor:pointer;box-shadow:3px 4px 0 var(--tinte);transition:transform .12s,box-shadow .12s}
+.knopf:active{transform:translate(2px,3px);box-shadow:1px 1px 0 var(--tinte)}
+.knopf svg{width:22px;height:22px}
+.knopf.leise{background:var(--papier);color:var(--tinte)}
+.knopf.gelb{background:var(--butter);color:var(--tinte)}
+.knopf.klein{display:inline-flex;width:auto;padding:8px 16px;font-size:16px;box-shadow:2px 2px 0 var(--tinte)}
+
+/* Los-Ziehung */
+.los{display:flex;align-items:center;gap:16px;margin:16px 0 0;padding:16px 18px;background:var(--bg,var(--rosa));color:var(--ink,var(--wein));border-radius:18px;border:2px solid var(--tinte);animation:rein .35s ease-out}
+.los .los-nr{font-family:var(--hand);font-weight:700;font-size:64px;line-height:1;min-width:48px;text-align:center}
+.los .los-text{flex:1}
+.los .los-text .hand{font-size:18px}
+.los h3{font-size:20px;margin:2px 0 4px}
+.los p{margin:0 0 8px;font-family:var(--hand);font-size:19px}
+.los .knopf.klein{margin:0;background:var(--papier);color:var(--tinte)}
+.los.dreht .los-nr{animation:dreh .09s linear infinite}
+@keyframes dreh{50%{transform:translateY(-4px) rotate(-6deg)}}
+@keyframes rein{from{transform:scale(.9) rotate(-2deg);opacity:0}}
+
+/* Tickets */
+.zaehler{font-family:var(--hand);font-weight:700;font-size:22px;text-transform:uppercase;margin:26px 2px 8px;color:var(--wein)}
+.liste{display:grid;gap:16px}
+.ticket-rahmen{filter:drop-shadow(3px 4px 0 var(--tinte));transition:transform .2s}
+.ticket-rahmen:nth-child(odd){transform:rotate(-.7deg)}
+.ticket-rahmen:nth-child(even){transform:rotate(.6deg)}
+.ticket-rahmen:hover{transform:rotate(0) scale(1.015)}
+.ticket{position:relative;display:flex;min-height:142px;padding:11px 17px;background:var(--bg);color:var(--ink);text-decoration:none}
+.t-innen{position:relative;z-index:1;flex:1;display:flex;border:2px solid currentColor;border-radius:8px}
+.t-stub{flex:none;width:70px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-right:2px dashed currentColor;padding:6px 0}
+.t-klein{font-family:var(--hand);font-weight:700;font-size:17px;text-transform:uppercase;line-height:1}
+.t-nr{font-family:var(--hand);font-weight:700;font-size:58px;line-height:.9}
+.t-haupt{flex:1;padding:10px 14px 12px;min-width:0}
+.t-zeile{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.t-zeit{display:inline-flex;align-items:center;gap:5px;font-weight:800;font-size:14px;border:1.5px solid currentColor;border-radius:999px;padding:1px 10px}
+.t-zeit svg{width:14px;height:14px}
+.t-symbol{width:44px;height:44px;flex:none;margin:-4px -4px 0 0}
+.ticket h2{font-size:21px;margin:8px 0 2px}
+.t-motto{font-family:var(--hand);font-weight:700;font-size:20px;margin:0;line-height:1.15}
+.pille{display:inline-block;margin-top:10px;background:var(--papier);color:var(--tinte);border:2px solid var(--tinte);border-radius:999px;padding:4px 16px;font-weight:800;font-size:15px}
+/* verpackt */
+.ticket.zu{background:repeating-linear-gradient(-45deg,var(--bg) 0 13px,var(--bg2) 13px 26px)}
+.ticket.zu::before{content:"";position:absolute;z-index:0;top:0;bottom:0;right:17%;width:16px;background:var(--papier);opacity:.85;transform-origin:top;transition:transform .45s ease-in}
+.ticket.zu::after{content:"";position:absolute;z-index:0;left:0;right:0;top:50%;height:12px;margin-top:-6px;background:var(--papier);opacity:.55;transform-origin:left;transition:transform .45s ease-in .1s}
+.ticket.zu.auf::before{transform:scaleY(0)}
+.ticket.zu.auf::after{transform:scaleX(0)}
+.ticket.zu.auf{animation:wackeln .5s}
+@keyframes wackeln{20%{transform:rotate(-2deg)}40%{transform:rotate(2deg)}60%{transform:rotate(-1.5deg)}80%{transform:rotate(1deg)}}
+.ticket.neu,.umdreh{animation:umdrehen .6s ease-out}
+@keyframes umdrehen{from{transform:perspective(700px) rotateX(80deg);opacity:0}}
+/* Stempel */
+.stempel{position:absolute;z-index:2;right:16px;bottom:12px;transform:rotate(-12deg);border:3px solid var(--stempel,var(--kirsch));color:var(--stempel,var(--kirsch));
+  font-family:var(--hand);font-weight:700;font-size:20px;text-transform:uppercase;padding:0 10px;border-radius:8px;opacity:.9;background:color-mix(in srgb,var(--bg) 75%,transparent)}
+.stempel.neu{animation:stempeln .55s cubic-bezier(.3,1.6,.5,1)}
+@keyframes stempeln{from{transform:scale(2.6) rotate(-30deg);opacity:0}}
+.leer{text-align:center;padding:22px;font-family:var(--hand);font-size:22px;color:var(--leise)}
+
+/* Detailseite */
+.zurueck{display:inline-block;padding:12px 2px 4px;text-decoration:none;font-weight:800}
+.d-kopf{position:relative;background:var(--bg);color:var(--ink);text-align:center;padding:24px 20px 40px;margin:8px -16px 0}
+.d-kopf .hand{font-size:22px}
+.d-symbol{width:84px;height:84px;margin:8px auto 4px;display:block}
+.d-kopf h1{font-size:clamp(30px,8vw,40px)}
+.d-motto{font-family:var(--hand);font-weight:700;font-size:24px;margin:6px 0 10px}
+.d-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.d-tags span{border:1.5px solid currentColor;border-radius:999px;padding:1px 11px;font-size:14px;font-weight:800}
+.d-kopf .stempel{bottom:auto;top:18px;right:18px;font-size:22px}
+.schritte{list-style:none;counter-reset:s;padding:0;margin:6px 0 0}
+.schritte li{counter-increment:s;position:relative;padding:0 0 0 46px;margin:12px 0;min-height:34px}
+.schritte li::before{content:counter(s);position:absolute;left:0;top:-3px;width:34px;height:34px;border-radius:50%;background:var(--bg);color:var(--ink);border:2px solid var(--tinte);
+  display:flex;align-items:center;justify-content:center;font-family:var(--hand);font-weight:700;font-size:22px}
+.funkelliste{list-style:none;padding:0;margin:4px 0 0}
+.funkelliste li{position:relative;padding-left:28px;margin:9px 0}
+.funkelliste li svg{position:absolute;left:0;top:4px;width:17px;height:17px;color:var(--kirsch)}
+
+/* Poster: Streifen, Sterne und Blob */
+.poster{position:relative;overflow:hidden;border-radius:18px;border:2px solid var(--tinte);padding:34px 18px;margin:16px 0;
+  background:radial-gradient(circle,var(--wald) 0 4px,transparent 5px) 9px 30px/36px 52px,repeating-linear-gradient(90deg,var(--petrol) 0 22px,var(--mint) 22px 36px)}
+.poster .p-stern{position:absolute;color:var(--zitrone);width:22px;height:22px}
+.blob{position:relative;z-index:1;background:var(--wald);color:var(--zitrone);border:6px solid var(--blobrand);border-radius:46% 54% 42% 58%/55% 42% 58% 45%;padding:26px 24px;text-align:center}
+.blob .hand{font-size:28px;line-height:1.05}
+.blob p{margin:8px 0 0;font-size:17px}
+
+/* Auszeit-Timer (Vollbild) */
+.vollbild{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:max(20px,env(safe-area-inset-top)) 16px 20px;border-radius:0;border:0;margin:0;overflow-y:auto}
+.vollbild .blob{max-width:430px;width:100%;padding:34px 22px}
+.vollbild .schliessen{position:absolute;z-index:2;top:max(12px,env(safe-area-inset-top));right:16px;width:44px;height:44px;border-radius:50%;background:var(--zitrone);color:var(--wald);
+  display:flex;align-items:center;justify-content:center;font:700 28px var(--hand);text-decoration:none;border:2px solid var(--wald)}
+.uhr{font:900 clamp(64px,21vw,96px)/1 var(--serif);margin:12px 0 4px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.blob .chips{justify-content:center;margin:14px 0 4px}
+.blob .chip{background:transparent;border-color:var(--zitrone);color:var(--zitrone)}
+.blob .chip.an{background:var(--zitrone);color:var(--wald)}
+.blob .knopf{background:var(--zitrone);color:var(--wald);border-color:var(--zitrone);box-shadow:none}
+.blob .knopf.leise{background:transparent;color:var(--zitrone)}
+.blob .klein{font-size:14px;opacity:.85}
+.spruch{font-family:var(--hand);font-weight:700;font-size:23px;min-height:1.3em;margin-top:8px;animation:rein .6s}
+
+/* Hinweisleiste laufende Auszeit */
+.leiste{position:sticky;top:max(8px,env(safe-area-inset-top));z-index:10;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:var(--wald);color:var(--zitrone);border-radius:999px;padding:9px 10px 9px 18px;text-decoration:none;font-weight:800;box-shadow:3px 4px 0 var(--tinte);margin-top:6px}
+.leiste span:last-child{background:var(--zitrone);color:var(--wald);border-radius:999px;padding:2px 12px}
+
+/* Bewertung */
+.herzen{display:flex;gap:6px;margin:8px 0 14px}
+.herz{width:46px;height:46px;border:0;background:none;padding:0;cursor:pointer;color:var(--kirsch)}
+.herz svg{width:100%;height:100%}
+.herz path{fill:transparent;transition:fill .15s}
+.herz.an path{fill:var(--rosa)}
+label{display:block;font-weight:800;margin-top:6px}
+textarea{width:100%;padding:12px;font:16px/1.45 Nunito,sans-serif;color:var(--tinte);border:2px solid var(--tinte);border-radius:12px;background:#fff;resize:vertical;margin-top:6px}
+
+/* Tagebuch */
+.kacheln{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.kachel{position:relative;isolation:isolate;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--ink);padding:10px}
+.kachel svg{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.kachel svg path{fill:var(--bg)}
+.kachel b{font:900 26px/1 var(--serif)}
+.kachel span{font-size:12px;font-weight:800;text-transform:uppercase;margin-top:4px;line-height:1.2}
+.eintrag{display:flex;gap:14px;align-items:flex-start;background:var(--papier);border:2px solid var(--tinte);border-radius:16px;padding:14px;margin:12px 0;box-shadow:3px 4px 0 var(--tinte);text-decoration:none}
+.eintrag .e-nr{flex:none;width:52px;height:52px;border-radius:50%;background:var(--bg);color:var(--ink);border:2px solid var(--tinte);display:flex;align-items:center;justify-content:center;font:700 30px var(--hand)}
+.eintrag h3{font-size:18px}
+.eintrag .meta{font-size:14px;color:var(--leise)}
+.eintrag .notiz{font-family:var(--hand);font-weight:700;font-size:20px;line-height:1.2;margin-top:4px}
+.mini-herzen{color:var(--kirsch);letter-spacing:2px}
+
+.blaettern{display:flex;justify-content:space-between;margin-top:18px}
+.tipp{font-size:14px;color:var(--leise);text-align:center;margin:26px 10px 0}
+.fuss{margin:34px -16px 0;text-align:center}
+.karo{height:18px;background:repeating-conic-gradient(var(--kirsch) 0 25%,var(--rosa) 0 50%) 0 0/18px 18px}
+.fuss p{font-family:var(--hand);font-weight:700;font-size:20px;color:var(--wein);margin:12px 0 0}
+.reset{background:none;border:0;color:var(--leise);text-decoration:underline;font-size:14px;cursor:pointer;display:block;margin:18px auto 0}
+
+.funke{position:fixed;width:20px;height:20px;margin:-10px 0 0 -10px;pointer-events:none;z-index:99;animation:funke .95s ease-out forwards}
+.funke svg{width:100%;height:100%;display:block}
+@keyframes funke{from{transform:translate(0,0) scale(0)}35%{transform:translate(calc(var(--dx)*.55),calc(var(--dy)*.55)) scale(var(--s)) rotate(60deg)}to{transform:translate(var(--dx),var(--dy)) scale(0) rotate(200deg)}}
+
+@media (min-width:560px){.liste{gap:20px}.ticket h2{font-size:23px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script src="geschenke.js"></script>
+<script>
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const app = $('#app');
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const LS = {
+  get(k, d) { try { const v = JSON.parse(localStorage.getItem('dd-' + k)); return v === null ? d : v; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('dd-' + k, JSON.stringify(v)); } catch (e) {} },
+  del(k) { try { localStorage.removeItem('dd-' + k); } catch (e) {} }
+};
+
+/* ---------- Symbole ---------- */
+const ICON = {
+  tasse: '<path d="M10 20h24v7a11 11 0 0 1-11 11h-2a11 11 0 0 1-11-11z"/><path d="M34 23h2.5a4.5 4.5 0 0 1 0 9H33"/><path d="M17 8c-2 3 2 5 0 8M23 6c-2 3 2 5 0 8M29 8c-2 3 2 5 0 8"/><path d="M7 43h30"/>',
+  pinsel: '<path d="M37 7 23 25"/><path d="m20 22 6 6"/><path d="M21 26c-4-1-8 1-8 5 0 3-2 5-5 6 7 2 14 0 16-4 1-3-1-6-3-7z"/><path d="M38 30c-3 4-4 6-4 8a4 4 0 0 0 8 0c0-2-1-4-4-8z"/>',
+  cupcake: '<path d="M12 27h24l-3 14H15z"/><path d="M19 27l1.5 14M24 27v14M29 27l-1.5 14"/><path d="M11 27c-2-6 3-10 7-9 1-6 11-6 12 0 4-1 9 3 7 9z"/><circle cx="24" cy="11" r="2.6"/><path d="M25 8.5c1-3 3-4 5-4"/>',
+  puzzle: '<path d="M9 15h8a4 4 0 1 1 8 0h8v8a4 4 0 1 1 0 8v9h-8a4 4 0 1 0-8 0H9v-9a4 4 0 1 0 0-8z"/>',
+  staffelei: '<path d="M24 5v5M15 43l5-14M33 43l-5-14M24 29v14"/><rect x="11" y="10" width="26" height="19" rx="1.5"/><path d="M14 26l7-8 4 4 3-3 6 7"/><circle cx="31" cy="15" r="2"/>',
+  kerze: '<path d="M24 5c-3 4-4.5 6-4.5 8.5a4.5 4.5 0 0 0 9 0C28.5 11 27 9 24 5z"/><path d="M24 18v3"/><rect x="16.5" y="21" width="15" height="19" rx="2"/><path d="M16.5 28c3 2 4.5-2 7.5 0s4.5 2 7.5 0M16.5 34c3 2 4.5-2 7.5 0s4.5 2 7.5 0"/><path d="M12 43h24"/>',
+  blume: '<circle cx="24" cy="15" r="3.2"/><circle cx="30" cy="15" r="3.4"/><circle cx="27" cy="20.2" r="3.4"/><circle cx="21" cy="20.2" r="3.4"/><circle cx="18" cy="15" r="3.4"/><circle cx="21" cy="9.8" r="3.4"/><circle cx="27" cy="9.8" r="3.4"/><path d="M24 24v19"/><path d="M24 36c-6 0-9-4-9-7 5 0 9 3 9 7zM24 32c5 0 8-3 8-6-4 0-8 2-8 6z"/>',
+  uhr: '<circle cx="24" cy="25" r="16"/><path d="M24 16v9l6 4M19 5h10"/>',
+  zufall: '<path d="M24 4c1.6 10 6.4 14.4 16 16-9.6 1.6-14.4 6-16 16-1.6-10-6.4-14.4-16-16 9.6-1.6 14.4-6 16-16z"/><path d="M39 33c.6 3.4 2.2 5 5.5 5.5-3.3.6-4.9 2.2-5.5 5.5-.6-3.3-2.2-4.9-5.5-5.5 3.3-.5 4.9-2.1 5.5-5.5z"/>',
+  handy: '<rect x="14" y="5" width="20" height="38" rx="4"/><path d="M21 37h6"/><path d="M8 8l32 32"/>'
+};
+const svg = (name, cls = '') => `<svg class="${cls}" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[name]}</svg>`;
+const FUNKEL = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C13 7 17 11 24 12 17 13 13 17 12 24 11 17 7 13 0 12 7 11 11 7 12 0Z" fill="currentColor"/></svg>';
+const STERN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2l2.8 6.1 6.7.9-4.9 4.6 1.3 6.6L12 17.1l-5.9 3.3 1.3-6.6-4.9-4.6 6.7-.9z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
+const HERZ = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5C6 16.4 3 13 3 9.3A4.6 4.6 0 0 1 12 7.4a4.6 4.6 0 0 1 9 1.9c0 3.7-3 7.1-9 11.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
+// Wellenkreis für die Kacheln im Tagebuch
+const welle = (z = 11, a = 3) => {
+  let d = '';
+  for (let i = 0; i <= 220; i++) {
+    const t = i / 220 * Math.PI * 2, r = 46 + a * Math.sin(z * t) - a;
+    d += (i ? 'L' : 'M') + (50 + r * Math.cos(t)).toFixed(2) + ' ' + (50 + r * Math.sin(t)).toFixed(2);
+  }
+  return `<svg viewBox="0 0 100 100" aria-hidden="true"><path d="${d}Z" stroke="#3a1d22" stroke-width="2"/></svg>`;
+};
+
+/* ---------- Zustand ---------- */
+const finde = nr => GESCHENKE.find(g => g.nr === nr);
+const ausgepackt = () => LS.get('ausgepackt', []);
+const istZu = g => CONFIG.ueberraschung && !ausgepackt().includes(g.nr);
+const erledigt = () => LS.get('erledigt', {});
+const istFertig = g => !!erledigt()[g.nr];
+const auszeiten = () => LS.get('auszeiten', []);
+const offlineMin = () => auszeiten().reduce((s, a) => s + a.min, 0);
+let filter = Object.assign({ zeit: '', lust: '', status: '' }, LS.get('filter', {}));
+const passt = g => (!filter.zeit || g.zeitStufen.includes(filter.zeit))
+  && (!filter.lust || g.lust.includes(filter.lust))
+  && (!filter.status || (filter.status === 'offen') !== istFertig(g));
+
+const fmtMin = m => m < 60 ? m + ' Min.' : Math.floor(m / 60) + ' Std.' + (m % 60 ? ' ' + (m % 60) + ' Min.' : '');
+const fmtUhr = ms => {
+  const s = Math.max(0, Math.ceil(ms / 1000)), h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), z = n => String(n).padStart(2, '0');
+  return h ? `${h}:${z(m)}:${z(s % 60)}` : `${z(m)}:${z(s % 60)}`;
+};
+const fmtDatum = iso => new Date(iso).toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
+const istApp = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+
+const anleitungOffen = !LS.get('gesehen', false);
+LS.set('gesehen', true);
+let seite = '', startScroll = 0, letztesLos = 0, frischGestempelt = 0, frischAusgepackt = 0, tick = null, ergebnis = null;
+addEventListener('scroll', () => { if (seite === 'start') startScroll = scrollY; }, { passive: true });
+
+/* ---------- Funken ---------- */
+const FARBEN = ['#c8323b', '#f6b7c3', '#fbd872', '#6fb0ae', '#c3c6f5', '#a9c79a', '#f5a961'];
+function funken(x, y, n = 26) {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  for (let i = 0; i < n; i++) {
+    const s = document.createElement('span'), w = Math.random() * Math.PI * 2, d = 50 + Math.random() * 120;
+    s.className = 'funke'; s.innerHTML = FUNKEL;
+    s.style.cssText = `left:${x}px;top:${y}px;color:${FARBEN[i % 7]};--dx:${Math.cos(w) * d}px;--dy:${Math.sin(w) * d}px;--s:${.6 + Math.random() * .9}`;
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1000);
+  }
+}
+const mitte = el => { const r = el.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; };
+
+/* ---------- Bausteine ---------- */
+const DEKO = [
+  ['f', 6, 16, 24, '#3a1d22', 0], ['f', 85, 8, 34, '#3a1d22', .7], ['f', 91, 44, 17, '#3a1d22', 1.3], ['f', 10, 64, 19, '#3a1d22', .4],
+  ['s', 20, 4, 24, '#e46a9b', .2], ['s', 76, 76, 28, '#7aa35c', .9], ['f', 72, 30, 15, '#5b8fd6', 1.6], ['s', 2, 40, 20, '#f0b429', 1.1],
+  ['f', 24, 97, 15, '#e0562f', .6], ['s', 90, 86, 18, '#5b8fd6', .3]
+];
+const deko = () => DEKO.map(([t, x, y, g, c, v]) =>
+  `<span class="deko" style="left:${x}%;top:${y}%;width:${g}px;height:${g}px;color:${c};animation-delay:${v}s">${t === 'f' ? FUNKEL : STERN}</span>`).join('');
+
+function leisteHTML() {
+  const t = LS.get('timer', null);
+  if (!t) return '';
+  const rest = t.ende - Date.now();
+  return `<a class="leiste" href="#/auszeit/${t.nr || 'frei'}"><span>${rest > 0 ? 'Deine Auszeit läuft' : 'Auszeit geschafft!'}</span><span id="leiste-uhr">${rest > 0 ? fmtUhr(rest) : 'Ansehen'}</span></a>`;
+}
+
+function ticketHTML(g) {
+  const zu = istZu(g), fertig = istFertig(g);
+  return `<div class="ticket-rahmen"><a class="ticket zacken f-${g.farbe}${zu ? ' zu' : ''}${frischAusgepackt === g.nr ? ' neu' : ''}" href="#/g/${g.nr}" data-nr="${g.nr}">
+    <div class="t-innen">
+      <div class="t-stub"><span class="t-klein">Nr.</span><span class="t-nr">${g.nr}</span></div>
+      <div class="t-haupt">
+        <div class="t-zeile"><span class="t-zeit">${svg('uhr')}${g.zeit}</span>${zu ? '' : svg(g.symbol, 't-symbol')}</div>
+        ${zu ? `<h2>Geschenk ${g.nr}</h2><p class="t-motto">${g.motto}</p><span class="pille" data-auspacken="${g.nr}">Auspacken</span>`
+             : `<h2>${g.titel}</h2><p class="t-motto">${g.motto}</p>`}
+      </div>
+    </div>${fertig ? '<span class="stempel">Geschafft</span>' : ''}</a></div>`;
+}
+
+function auspacken(nr, el, danach) {
+  const t = el.closest('.ticket') || el;
+  if (t.classList.contains('auf')) return;
+  t.classList.add('auf');
+  const [x, y] = mitte(t);
+  setTimeout(() => {
+    LS.set('ausgepackt', [...new Set([...ausgepackt(), nr])]);
+    funken(x, y, 34);
+    frischAusgepackt = nr;
+    danach();
+    frischAusgepackt = 0;
+  }, 650);
+}
+
+/* ---------- Startseite ---------- */
+function start() {
+  seite = 'start';
+  const liste = GESCHENKE.filter(passt);
+  const n = GESCHENKE.filter(istFertig).length, off = offlineMin();
+  const chips = (gruppe, werte) => `<div class="chips">${[['', 'Alle'], ...Object.entries(werte)].map(([k, t]) =>
+    `<button class="chip${filter[gruppe] === k ? ' an' : ''}" data-g="${gruppe}" data-k="${k}">${t}</button>`).join('')}</div>`;
+  const band = ['more crafting', 'less screen time', 'self care club', 'happy birthday'].map(t => `<span>${t}</span><span>✶</span>`).join('');
+  app.innerHTML = `${leisteHTML()}
+  <header class="hero">${deko()}
+    <div class="chip-ticket zacken"><div class="rand hand">${STERN}<span>Happy Birthday${CONFIG.name ? ', ' + esc(CONFIG.name) : ''}!</span>${STERN}</div></div>
+    <h1>Digital<br>Detox</h1>
+    <p class="unter">7 Geschenke · 7 Auszeiten · 0 Bildschirm</p>
+  </header>
+  <div class="band" aria-hidden="true"><div class="lauf">${band}${band}${band}${band}</div></div>
+  <section class="brief bogen-oben"><div class="hand">Für dich</div>${CONFIG.widmung}<div class="von">${esc(CONFIG.von)}</div></section>
+  <details class="blatt anleitung"${anleitungOffen ? ' open' : ''}><summary>So funktioniert’s</summary>${CONFIG.anleitung}</details>
+
+  <section class="fortschritt">
+    <div class="hand">be proud of your progress</div>
+    <div class="sterne">${GESCHENKE.map(g => `<a class="stern f-${g.farbe}${istFertig(g) ? ' an' : ''}" href="#/g/${g.nr}" aria-label="Geschenk ${g.nr}">${STERN}</a>`).join('')}</div>
+    <p>${n} von 7 Auszeiten genommen${off ? ' · ' + fmtMin(off) + ' offline' : ''}</p>
+  </section>
+
+  <section class="filter">
+    <div class="label">Wie viel Zeit hast du?</div>${chips('zeit', ZEITEN)}
+    <div class="label">Worauf hast du Lust?</div>${chips('lust', LUST)}
+    <div class="label">Status</div>${chips('status', { offen: 'Noch offen', fertig: 'Geschafft' })}
+    <button class="knopf" id="los">${svg('zufall')}Überrasch mich</button>
+    <div id="los-feld"></div>
+  </section>
+
+  <div class="zaehler">${liste.length === 7 ? 'Alle 7 Geschenke' : liste.length === 1 ? '1 passendes Geschenk' : liste.length + ' passende Geschenke'}</div>
+  <div class="liste">${liste.length ? liste.map(ticketHTML).join('') : '<div class="leer">Nichts passt gerade. Lockere die Filter ein bisschen.</div>'}</div>
+
+  <a class="knopf gelb" href="#/auszeit/frei">${svg('handy')}Einfach mal offline</a>
+  <a class="knopf leise" href="#/tagebuch">Mein Auszeit-Tagebuch</a>
+  ${istApp ? '' : `<p class="tipp">Tipp: Leg dir diese Seite auf den Startbildschirm. Auf dem iPhone über das Teilen-Symbol und „Zum Home-Bildschirm“, bei Android über das Menü ⋮ und „Zum Startbildschirm hinzufügen“. Dann funktioniert sie auch ohne Internet.</p>`}
+  <footer class="fuss"><div class="karo"></div><p>more crafting, less screen time</p></footer>`;
+
+  $$('.chip[data-g]').forEach(b => b.onclick = () => {
+    filter[b.dataset.g] = b.dataset.k; LS.set('filter', filter);
+    const y = scrollY; start(); scrollTo(0, y);
+  });
+  $$('[data-auspacken]').forEach(b => b.onclick = e => {
+    e.preventDefault(); e.stopPropagation();
+    const y = scrollY;
+    auspacken(+b.dataset.auspacken, b, () => { start(); scrollTo(0, y); });
+  });
+  $('#los').onclick = losZiehen;
+  zeigeLeiste();
+}
+
+function losZiehen() {
+  const feld = $('#los-feld'), liste = GESCHENKE.filter(passt);
+  let pool = liste.filter(g => !istFertig(g));
+  if (!pool.length) pool = liste;
+  if (pool.length > 1) pool = pool.filter(g => g.nr !== letztesLos);
+  if (!pool.length) { feld.innerHTML = '<div class="leer">Zu deiner Auswahl passt gerade nichts.</div>'; return; }
+  const g = pool[Math.floor(Math.random() * pool.length)];
+  letztesLos = g.nr;
+  feld.innerHTML = `<div class="los dreht"><span class="los-nr">?</span><div class="los-text"><div class="hand">Das Los entscheidet …</div></div></div>`;
+  const nr = $('.los-nr', feld); let i = 0;
+  const iv = setInterval(() => { nr.textContent = (i++ % 7) + 1; }, 85);
+  setTimeout(() => {
+    clearInterval(iv);
+    const zu = istZu(g);
+    feld.innerHTML = `<div class="los f-${g.farbe}"><span class="los-nr">${g.nr}</span><div class="los-text">
+      <div class="hand">Heute dran:</div><h3>${zu ? 'Geschenk ' + g.nr : g.titel}</h3><p>${g.motto} · ${g.zeit}</p>
+      <a class="knopf klein" href="#/g/${g.nr}">${zu ? 'Zum Päckchen' : 'Los geht’s'}</a></div></div>`;
+    funken(...mitte($('.los-nr', feld)), 18);
+  }, 1200);
+}
+
+/* ---------- Geschenkseite ---------- */
+function geschenkSeite(nr) {
+  const g = finde(nr);
+  if (!g) return start();
+  seite = 'geschenk';
+  const vor = finde(nr - 1), nach = finde(nr + 1);
+  const blaettern = `<nav class="blaettern">${vor ? `<a class="knopf klein leise" href="#/g/${vor.nr}">‹ Nr. ${vor.nr}</a>` : '<span></span>'}${nach ? `<a class="knopf klein leise" href="#/g/${nach.nr}">Nr. ${nach.nr} ›</a>` : '<span></span>'}</nav>`;
+
+  if (istZu(g)) {
+    app.innerHTML = `${leisteHTML()}<a class="zurueck" href="#/">‹ Alle Geschenke</a>
+    <div class="liste" style="margin-top:12px">${ticketHTML(g)}</div>
+    <section class="blatt" style="text-align:center"><h2>Noch verpackt</h2>
+      <p>Hinweis: <span class="t-motto">${g.motto}</span><br>Dauert etwa ${g.zeit}</p>
+      <button class="knopf" id="auf">Jetzt auspacken</button></section>${blaettern}`;
+    const auf = () => auspacken(nr, $('.ticket'), () => geschenkSeite(nr));
+    $('#auf').onclick = auf;
+    $('.ticket').onclick = e => { e.preventDefault(); auf(); };
+    return zeigeLeiste();
+  }
+
+  const e = erledigt()[nr];
+  app.innerHTML = `${leisteHTML()}<a class="zurueck" href="#/">‹ Alle Geschenke</a>
+  <article class="f-${g.farbe}">
+    <header class="d-kopf bogen-unten${frischAusgepackt === nr ? ' umdreh' : ''}">
+      <div class="hand">Geschenk ${g.nr}</div>${svg(g.symbol, 'd-symbol')}
+      <h1>${g.titel}</h1><p class="d-motto">${g.motto}</p>
+      <div class="d-tags"><span>${g.zeit}</span>${g.lust.map(l => `<span>${LUST[l]}</span>`).join('')}</div>
+      ${e ? `<span class="stempel${frischGestempelt === nr ? ' neu' : ''}">Geschafft</span>` : ''}
+    </header>
+    <section class="blatt"><h2>Was drin ist</h2><ul class="funkelliste">${g.inhalt.map(t => `<li>${FUNKEL}${t}</li>`).join('')}</ul></section>
+    <section class="blatt"><h2>So geht’s</h2><ol class="schritte">${g.schritte.map(t => `<li>${t}</li>`).join('')}</ol></section>
+    <section class="blatt"><h2>Tipps</h2><ul class="funkelliste">${g.tipps.map(t => `<li>${FUNKEL}${t}</li>`).join('')}</ul></section>
+    <section class="poster">${posterSterne()}<div class="blob"><div class="hand">Detox-Aufgabe</div><p>${g.detox}</p></div></section>
+  </article>
+  <a class="knopf" href="#/auszeit/${g.nr}">${svg('handy')}Auszeit starten · ${fmtMin(g.minuten)}</a>
+  ${e ? `<a class="eintrag f-${g.farbe}" href="#/fertig/${g.nr}"><span class="e-nr">${g.nr}</span><div>
+        <div class="meta">Geschafft am ${fmtDatum(e.datum)}</div><div class="mini-herzen">${'♥'.repeat(e.herzen || 0)}</div>
+        ${e.notiz ? `<div class="notiz">${esc(e.notiz)}</div>` : '<div class="meta">Tippen, um etwas dazuzuschreiben.</div>'}</div></a>
+        <button class="reset" id="weg">Stempel wieder entfernen</button>`
+     : `<a class="knopf leise" href="#/fertig/${g.nr}">Geschafft! Abstempeln</a>`}
+  ${blaettern}`;
+  if (frischGestempelt === nr) { const s = $('.d-kopf .stempel'); setTimeout(() => funken(...mitte(s), 30), 350); frischGestempelt = 0; }
+  const weg = $('#weg');
+  if (weg) weg.onclick = () => {
+    if (!confirm('Stempel und Notiz zu diesem Geschenk entfernen?')) return;
+    const alle = erledigt(); delete alle[nr]; LS.set('erledigt', alle); geschenkSeite(nr);
+  };
+  zeigeLeiste();
+}
+
+function posterSterne() {
+  const pos = [[6, 10], [84, 6], [92, 58], [4, 72], [46, 88], [70, 92], [20, 40], [88, 32]];
+  return pos.map(([x, y], i) => `<span class="p-stern" style="left:${x}%;top:${y}%;transform:rotate(${i * 23}deg) scale(${.7 + (i % 3) * .2})">${STERN.replace('fill="none"', 'fill="currentColor"')}</span>`).join('');
+}
+
+/* ---------- Abstempeln ---------- */
+function fertigSeite(nr) {
+  const g = finde(nr);
+  if (!g) return start();
+  seite = 'fertig';
+  const alt = erledigt()[nr] || {};
+  let herzen = alt.herzen || 0;
+  app.innerHTML = `<a class="zurueck" href="#/g/${nr}">‹ Zurück zu Geschenk ${nr}</a>
+  <section class="blatt f-${g.farbe}">
+    <div class="hand" style="font-size:20px;color:var(--wein)">Geschenk ${nr} · ${istZu(g) ? 'Überraschung' : g.titel}</div>
+    <h2 style="font-size:32px;margin-top:4px">Wie war’s?</h2>
+    <div class="herzen">${[1, 2, 3, 4, 5].map(i => `<button class="herz" data-h="${i}" aria-label="${i} von 5">${HERZ}</button>`).join('')}</div>
+    <label for="notiz">Ein Satz für später</label>
+    <textarea id="notiz" rows="4" placeholder="Was war schön? Was ist entstanden?">${esc(alt.notiz || '')}</textarea>
+    <button class="knopf" id="stempeln">${alt.datum ? 'Speichern' : 'Abstempeln'}</button>
+  </section>`;
+  const male = () => $$('.herz').forEach(b => b.classList.toggle('an', +b.dataset.h <= herzen));
+  male();
+  $$('.herz').forEach(b => b.onclick = () => { herzen = +b.dataset.h; male(); });
+  $('#stempeln').onclick = () => {
+    const alle = erledigt();
+    const neu = !alle[nr];
+    alle[nr] = { datum: alt.datum || new Date().toISOString(), herzen, notiz: $('#notiz').value.trim() };
+    LS.set('erledigt', alle);
+    LS.set('ausgepackt', [...new Set([...ausgepackt(), nr])]);
+    if (neu) frischGestempelt = nr;
+    location.hash = neu && Object.keys(alle).length === 7 ? '#/tagebuch' : '#/g/' + nr;
+  };
+}
+
+/* ---------- Auszeit-Timer ---------- */
+const SPRUECHE = ['Handy weg. Du hast frei.', 'Atme einmal tief durch.', 'Du verpasst nichts. Versprochen.', 'Was hörst du gerade?',
+  'Schultern runter, Kiefer locker.', 'More crafting, less screen time.', 'Das Handy kann warten.', 'Schön, dass du dir Zeit nimmst.'];
+let audio = null, wachSperre = null, wahlMin = 20;
+function tonBereit() { try { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); audio.resume(); } catch (e) {} }
+function klingeln() {
+  tonBereit();
+  if (navigator.vibrate) navigator.vibrate([220, 120, 220, 120, 400]);
+  if (!audio) return;
+  const t0 = audio.currentTime;
+  [784, 988, 1175, 1568].forEach((f, i) => {
+    const o = audio.createOscillator(), v = audio.createGain(), t = t0 + i * .2;
+    o.type = 'sine'; o.frequency.value = f;
+    v.gain.setValueAtTime(0, t); v.gain.linearRampToValueAtTime(.22, t + .02); v.gain.exponentialRampToValueAtTime(.001, t + 1.4);
+    o.connect(v).connect(audio.destination); o.start(t); o.stop(t + 1.5);
+  });
+}
+async function wachHalten() { try { if ('wakeLock' in navigator && !wachSperre) { wachSperre = await navigator.wakeLock.request('screen'); wachSperre.addEventListener('release', () => { wachSperre = null; }); } } catch (e) {} }
+function loslassen() { if (wachSperre) { wachSperre.release().catch(() => {}); wachSperre = null; } }
+
+function abschliessen(t, vorzeitig) {
+  const min = vorzeitig ? Math.floor((Date.now() - t.start) / 60000) : t.dauer;
+  if (min > 0) { const a = auszeiten(); a.push({ nr: t.nr, min, blicke: t.blicke || 0, datum: new Date().toISOString() }); LS.set('auszeiten', a); }
+  LS.del('timer');
+  loslassen();
+  ergebnis = { nr: t.nr, min, blicke: t.blicke || 0 };
+}
+
+function auszeitSeite(arg) {
+  seite = 'auszeit';
+  let t = LS.get('timer', null);
+  if (t && Date.now() >= t.ende) { abschliessen(t, false); t = null; klingeln(); }
+  const nr = t ? t.nr : (arg === 'frei' ? 0 : +arg);
+  const g = finde(nr);
+  const zurueck = g ? `#/g/${g.nr}` : '#/';
+  const titel = g ? (istZu(g) ? 'Geschenk ' + g.nr : g.titel) : 'Einfach mal offline';
+  const rahmen = inhalt => `<section class="poster vollbild">${posterSterne()}<a class="schliessen" href="${zurueck}" aria-label="Schließen">×</a><div class="blob">${inhalt}</div></section>`;
+
+  // Ergebnis nach Ablauf
+  if (!t && ergebnis) {
+    const r = ergebnis, eg = finde(r.nr);
+    const blick = r.blicke === 0 ? 'Kein einziges Mal zum Handy gegriffen. Detox-Profi!'
+      : r.blicke === 1 ? 'Nur einmal kurz am Handy. Zählt trotzdem.' : `${r.blicke}-mal zwischendurch am Handy. Nächstes Mal schaffst du weniger.`;
+    app.innerHTML = rahmen(`<div class="hand">Geschafft!</div><div class="uhr">${r.min}<span style="font-size:.4em"> Min.</span></div>
+      <p>offline. ${blick}</p>
+      ${eg && !istFertig(eg) ? `<a class="knopf" href="#/fertig/${eg.nr}">Geschenk ${eg.nr} abstempeln</a>` : ''}
+      <a class="knopf leise" href="${eg ? '#/g/' + eg.nr : '#/'}">Zurück</a>`);
+    ergebnis = null;
+    funken(innerWidth / 2, innerHeight / 2, 40);
+    return;
+  }
+
+  // Auswahl der Dauer
+  if (!t) {
+    wahlMin = g ? g.minuten : 20;
+    const zeichne = () => {
+      app.innerHTML = rahmen(`<div class="hand">${titel}</div><div class="uhr">${fmtUhr(wahlMin * 60000)}</div>
+        <div class="chips">${[10, 15, 20, 30, 45, 60, 90].map(m => `<button class="chip${m === wahlMin ? ' an' : ''}" data-m="${m}">${m}</button>`).join('')}</div>
+        <button class="knopf" id="start">${svg('handy')}Handy weg, los geht’s</button>
+        <p class="klein">Lass die Seite offen und leg das Handy umgedreht weg. Wenn die Zeit um ist, klingelt es leise. Wie oft du zwischendurch zum Handy greifst, wird gezählt.</p>`);
+      $$('.chip[data-m]').forEach(b => b.onclick = () => { wahlMin = +b.dataset.m; zeichne(); });
+      $('#start').onclick = () => {
+        tonBereit();
+        LS.set('timer', { nr, start: Date.now(), ende: Date.now() + wahlMin * 60000, dauer: wahlMin, blicke: 0 });
+        auszeitSeite(String(nr || 'frei'));
+      };
+    };
+    return zeichne();
+  }
+
+  // Laufende Auszeit
+  wachHalten();
+  app.innerHTML = rahmen(`<div class="hand">${titel}</div><div class="uhr" id="uhr">${fmtUhr(t.ende - Date.now())}</div>
+    <div class="klein">bis ${new Date(t.ende).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })} Uhr</div>
+    <div class="spruch" id="spruch"></div>
+    <button class="knopf leise" id="frueher">Schon fertig</button>
+    <button class="reset" id="abbruch" style="color:var(--zitrone)">Auszeit abbrechen</button>`);
+  let letzterSpruch = -1;
+  const takt = () => {
+    const jetzt = LS.get('timer', null);
+    if (!jetzt) return;
+    const rest = jetzt.ende - Date.now();
+    if (rest <= 0) { stopTakt(); return auszeitSeite(String(nr || 'frei')); }
+    $('#uhr').textContent = fmtUhr(rest);
+    const i = Math.floor((Date.now() - jetzt.start) / 90000) % SPRUECHE.length;
+    if (i !== letzterSpruch) { letzterSpruch = i; const s = $('#spruch'); s.textContent = SPRUECHE[i]; s.style.animation = 'none'; s.offsetHeight; s.style.animation = ''; }
+  };
+  takt();
+  tick = setInterval(takt, 250);
+  $('#frueher').onclick = () => { stopTakt(); abschliessen(LS.get('timer', t), true); auszeitSeite(String(nr || 'frei')); };
+  $('#abbruch').onclick = () => { if (!confirm('Auszeit abbrechen? Sie wird nicht gezählt.')) return; stopTakt(); LS.del('timer'); loslassen(); location.hash = zurueck; };
+}
+function stopTakt() { if (tick) { clearInterval(tick); tick = null; } }
+
+document.addEventListener('visibilitychange', () => {
+  const t = LS.get('timer', null);
+  if (!t) return;
+  if (document.hidden) { if (Date.now() < t.ende) { t.blicke = (t.blicke || 0) + 1; LS.set('timer', t); } }
+  else if (seite === 'auszeit') { wachHalten(); }
+});
+
+// Hinweisleiste mit Restzeit auf den anderen Seiten
+function zeigeLeiste() {
+  stopTakt();
+  const el = $('#leiste-uhr');
+  if (!el) return;
+  tick = setInterval(() => {
+    const t = LS.get('timer', null);
+    if (!t) return stopTakt();
+    const rest = t.ende - Date.now();
+    el.textContent = rest > 0 ? fmtUhr(rest) : 'Ansehen';
+    if (rest <= 0) el.previousElementSibling.textContent = 'Auszeit geschafft!';
+  }, 1000);
+}
+
+/* ---------- Tagebuch ---------- */
+function tagebuch() {
+  seite = 'tagebuch';
+  const alle = erledigt();
+  const fertig = GESCHENKE.filter(g => alle[g.nr]).sort((a, b) => alle[a.nr].datum.localeCompare(alle[b.nr].datum));
+  const a = auszeiten();
+  const kachel = (farbe, zahl, text) => `<div class="kachel f-${farbe}">${welle()}<b>${zahl}</b><span>${text}</span></div>`;
+  app.innerHTML = `${leisteHTML()}<a class="zurueck" href="#/">‹ Alle Geschenke</a>
+  <header class="hero" style="padding:16px 0 4px">${deko()}
+    <div class="hand" style="font-size:22px;color:var(--wald);text-transform:none">be proud of your progress</div>
+    <h1 style="font-size:clamp(40px,12vw,64px);margin:8px 0">Auszeit-<br>Tagebuch</h1></header>
+  <div class="kacheln">${kachel('rosa', fertig.length + '/7', 'Geschenke')}${kachel('butter', a.length, a.length === 1 ? 'Auszeit' : 'Auszeiten')}${kachel('petrol', fmtMin(offlineMin()).replace(' Min.', '′').replace(' Std.', 'h'), 'offline')}</div>
+  ${fertig.length === 7 ? `<section class="brief bogen-oben"><div class="hand">Alle sieben!</div>${CONFIG.finale}</section>` : ''}
+  ${fertig.length ? fertig.map(g => { const e = alle[g.nr]; return `<a class="eintrag f-${g.farbe}" href="#/g/${g.nr}"><span class="e-nr">${g.nr}</span><div>
+      <h3>${g.titel}</h3><div class="meta">${fmtDatum(e.datum)} <span class="mini-herzen">${'♥'.repeat(e.herzen || 0)}</span></div>
+      ${e.notiz ? `<div class="notiz">${esc(e.notiz)}</div>` : ''}</div></a>`; }).join('')
+    : '<div class="leer">Noch leer. Dein erstes Geschenk wartet schon.</div>'}
+  <a class="knopf" href="#/">Zu den Geschenken</a>
+  <button class="reset" id="reset">Alles zurücksetzen</button>`;
+  if (fertig.length === 7) setTimeout(() => funken(innerWidth / 2, 200, 50), 300);
+  $('#reset').onclick = () => {
+    if (!confirm('Wirklich alles zurücksetzen? Stempel, Notizen und Auszeiten werden gelöscht.')) return;
+    ['ausgepackt', 'erledigt', 'auszeiten', 'timer', 'filter', 'gesehen'].forEach(LS.del);
+    filter = { zeit: '', lust: '', status: '' };
+    location.hash = '#/';
+  };
+  zeigeLeiste();
+}
+
+/* ---------- Navigation ---------- */
+function route() {
+  stopTakt();
+  const [, s, arg] = (location.hash.slice(1) || '/').split('/');
+  const vorher = seite;
+  if (s === 'g') geschenkSeite(+arg);
+  else if (s === 'auszeit') auszeitSeite(arg || 'frei');
+  else if (s === 'fertig') fertigSeite(+arg);
+  else if (s === 'tagebuch') tagebuch();
+  else start();
+  if (seite === 'start' && vorher && vorher !== 'start') scrollTo(0, startScroll);
+  else if (seite !== 'start') scrollTo(0, 0);
+}
+addEventListener('hashchange', route);
+route();
+
+if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js');
+</script>
+</body>
+</html>
