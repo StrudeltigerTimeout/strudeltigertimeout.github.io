@@ -1,8 +1,8 @@
 // Persönliche Angaben. Hier Name, Widmung und Absender anpassen.
 // Einfache Anführungszeichen ' in Texten vermeiden, stattdessen ’ verwenden.
 const CONFIG = {
-  name: '',               // Name des Geburtstagskinds, z. B. 'Lena'. Leer lassen = ohne Namen.
-  von: 'Dion',            // Absender unter der Widmung
+  name: 'Leonie',         // Name des Geburtstagskinds. Leer lassen = ohne Namen.
+  von: 'Juli',            // Absender unter der Widmung
   ueberraschung: true,    // true: Geschenke sind auf der Seite verpackt, bis sie ausgepackt werden
   widmung: `
     <p>Alles Gute zum Geburtstag!</p>
@@ -17,7 +17,7 @@ const CONFIG = {
       <li><b>Auszeit-Timer:</b> Bei jedem Geschenk startest du einen Timer und legst das Handy umgedreht weg. Wenn die Zeit um ist, klingelt es leise. Die Seite merkt sich, wie oft du zwischendurch doch zum Handy gegriffen hast.</li>
       <li><b>Abstempeln:</b> Danach stempelst du das Geschenk ab und schreibst einen Satz dazu, wie es war. Alles sammelt sich in deinem Auszeit-Tagebuch.</li>
     </ul>
-    <p>Zurück auf diese Seite kommst du jederzeit, indem du dein Handy wieder an den Anhänger hältst.</p>`,
+    <p>Zurück auf diese Seite kommst du jederzeit, indem du dein Handy wieder an den Bilderrahmen hältst.</p>`,
   finale: `
     <p>Alle sieben Auszeiten geschafft. Be proud of your progress!</p>
     <p>Behalte die Gewohnheit: einmal pro Woche eine Stunde ohne Bildschirm. Der Timer bleibt hier für dich.</p>`
@@ -126,17 +126,18 @@ const GESCHENKE = [
   nr: 5, titel: 'Leinwand + Mini-Staffelei', motto: 'decorate your new home',
   zeit: '30+ Min.', minuten: 45, zeitStufen: ['mittel', 'lang'], lust: ['kreativ', 'zuhause'],
   farbe: 'orange', symbol: 'staffelei',
-  inhalt: ['Leinwand', 'Mini-Staffelei'],
+  inhalt: ['Leinwand', 'Mini-Staffelei', 'Farben sind nicht dabei: Die suchst du dir selbst aus (siehe Tipps).'],
   schritte: [
     'Einen Platz in der neuen Wohnung aussuchen, an dem das Bild stehen soll. Die Farben drumherum geben eine gute Richtung vor.',
+    'Farben besorgen, passend zu diesem Platz. Ein kleines Set Acrylfarbe reicht: Weiß, Schwarz und zwei, drei Lieblingsfarben.',
     'Motiv wählen (Ideen unten) und mit Bleistift leicht vorzeichnen.',
     'Mit dem Hintergrund und großen Flächen anfangen. Gut trocknen lassen.',
-    'Danach Details und Konturen. Dunkle Farben zuletzt.',
-    'Signieren, datieren und auf die Staffelei stellen.'
+    'Danach Details und Konturen. Dunkle Farben zuletzt. Signieren, datieren und auf die Staffelei stellen.'
   ],
   tipps: [
     'Motivideen: abstrakte Formen in drei Farben, eine einzelne Blume, Streifen oder Karos, die Hausnummer, der Blick aus dem Fenster.',
-    'Acrylfarbe deckt auf Leinwand am besten und trocknet schnell.',
+    'Acrylfarbe deckt auf Leinwand am besten und trocknet schnell. Gibt es in jedem Bastelladen und Drogeriemarkt. Für feine Linien gehen auch Acrylstifte.',
+    'Für Acryl sind ein breiter und ein feiner Pinsel praktisch. Pinsel sofort nach dem Malen mit Wasser auswaschen, getrocknete Acrylfarbe geht nicht mehr raus.',
     'Malerkrepp für gerade Kanten: aufkleben, malen und abziehen, solange die Farbe noch feucht ist.'
   ],
   detox: 'Mal, was du aus deinem Fenster siehst, nicht was du auf Pinterest gesehen hast.'

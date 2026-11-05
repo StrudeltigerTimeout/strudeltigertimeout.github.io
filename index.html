@@ -58,8 +58,9 @@ button{font:inherit;color:inherit}
 .deko svg{width:100%;height:100%;display:block}
 @keyframes funkeln{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(.72) rotate(14deg)}}
 .chip-ticket{display:inline-block;background:var(--rosa);color:var(--kirsch);padding:9px 20px;filter:none}
-.chip-ticket .rand{display:flex;align-items:center;gap:10px;border:2px solid var(--kirsch);border-radius:6px;padding:4px 14px;font-size:24px;line-height:1.1}
+.chip-ticket .rand{display:flex;align-items:center;gap:10px;border:2px solid var(--kirsch);border-radius:6px;padding:4px 12px;font-size:clamp(17px,5.4vw,24px);line-height:1.1}
 .chip-ticket svg{width:22px;height:22px;flex:none}
+.chip-ticket .name{display:block;font-size:1.75em;line-height:1;text-transform:none;font-weight:inherit}
 
 /* Laufband */
 .band{margin:6px -40px 22px;background:var(--butter);transform:rotate(-2.2deg);padding:12px 0;overflow:hidden;white-space:nowrap;
@@ -377,7 +378,7 @@ function start() {
   const band = ['more crafting', 'less screen time', 'self care club', 'happy birthday'].map(t => `<span>${t}</span><span>✶</span>`).join('');
   app.innerHTML = `${leisteHTML()}
   <header class="hero">${deko()}
-    <div class="chip-ticket zacken"><div class="rand hand">${STERN}<span>Happy Birthday${CONFIG.name ? ', ' + esc(CONFIG.name) : ''}!</span>${STERN}</div></div>
+    <div class="chip-ticket zacken"><div class="rand hand">${STERN}<span>${CONFIG.name ? `Happy Birthday<b class="name">${esc(CONFIG.name)}!</b>` : 'Happy Birthday!'}</span>${STERN}</div></div>
     <h1>Digital<br>Detox</h1>
     <p class="unter">7 Geschenke · 7 Auszeiten · 0 Bildschirm</p>
   </header>
