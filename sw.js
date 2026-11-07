@@ -1,5 +1,5 @@
 // Offline-Speicher: liefert sofort aus dem Cache und aktualisiert im Hintergrund.
-const CACHE = 'auszeit-v1';
+const CACHE = 'auszeit-v2';
 const DATEIEN = ['./', 'index.html', 'geschenke.js', 'manifest.webmanifest', 'icon.svg', 'icon-180.png', 'icon-192.png', 'icon-512.png',
   'fonts/fraunces.woff2', 'fonts/gochi.woff2', 'fonts/nunito.woff2'];
 

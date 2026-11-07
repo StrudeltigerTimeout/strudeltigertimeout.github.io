@@ -86,17 +86,21 @@ const GESCHENKE = [
   nr: 3, titel: 'Backmischung + Topping', motto: 'leckere Auszeit',
   zeit: '30 Min.', minuten: 30, zeitStufen: ['mittel'], lust: ['genuss'],
   farbe: 'butter', symbol: 'cupcake',
-  inhalt: ['Backmischung', 'Topping'],
+  inhalt: ['Backmischung für Muffins mit Zitrone und Vanille (300 g, Søstrene Grene)', 'Topping'],
+  brauchst: ['100 ml Wasser (1 dl)', '70 g Butter oder Öl', '1 Ei', '8 bis 10 Muffinförmchen', 'Wer mag: 150 g frische Beeren'],
   schritte: [
-    'Packung lesen: Dort steht, was du zusätzlich brauchst, meist Butter, Eier oder Milch. Alles bereitlegen.',
-    'Ofen vorheizen, wie auf der Packung angegeben.',
-    'Teig nach Anleitung anrühren und in die Form oder auf das Blech geben.',
-    'Backen. Die Backzeit ist deine Pause: Timer starten und nicht nachsehen, was es Neues gibt.',
-    'Abkühlen lassen und erst dann das Topping drauf, sonst verläuft es.'
+    'Ofen auf 170 °C Umluft vorheizen.',
+    'Butter schmelzen und kurz abkühlen lassen. Mit Öl geht es ohne diesen Schritt.',
+    'Backmischung in eine Schüssel geben. 100 ml Wasser, 70 g Butter oder Öl und das Ei dazugeben und mit dem Schneebesen glatt rühren. Nur so lange, bis keine Klümpchen mehr da sind, dann werden die Muffins schön locker.',
+    'Wer mag, hebt jetzt 150 g Beeren vorsichtig unter.',
+    'Teig auf 8 bis 10 Muffinförmchen verteilen, jedes etwa zu zwei Dritteln füllen.',
+    '12 bis 15 Minuten backen. Die Backzeit ist deine Pause: Timer starten und nicht nachsehen, was es Neues gibt.',
+    'Muffins abkühlen lassen und erst dann das Topping drauf, sonst verläuft es.'
   ],
   tipps: [
-    'Stäbchenprobe: Holzspieß in die Mitte stechen. Bleibt kein Teig hängen, ist es fertig.',
-    'Schmeckt am besten noch leicht warm, mit Musik aus dem Radio statt vom Handy.',
+    'Stäbchenprobe nach 12 Minuten: Holzspieß in die Mitte stechen. Bleibt kein Teig hängen, sind sie fertig.',
+    'Zu Zitrone und Vanille passen Heidelbeeren oder Himbeeren besonders gut.',
+    'Ohne Muffinblech zwei Papierförmchen ineinanderstellen, dann halten sie den Teig besser in Form.',
     'Etwas abgeben macht doppelt glücklich.'
   ],
   detox: 'Das erste Stück wird gegessen, nicht fotografiert.'

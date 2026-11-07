@@ -189,7 +189,10 @@ details.blatt li{margin:6px 0}
 
 /* Auszeit-Timer (Vollbild) */
 .vollbild{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:max(20px,env(safe-area-inset-top)) 16px 20px;border-radius:0;border:0;margin:0;overflow-y:auto}
-.vollbild .blob{max-width:430px;width:100%;padding:34px 22px}
+.vollbild .blob{max-width:400px;width:100%;padding:54px 36px 52px;border-radius:44% 48% 42% 46%/24% 27% 23% 26%}
+.vollbild .blob .knopf{display:flex;width:fit-content;max-width:100%;margin-left:auto;margin-right:auto;padding:12px 22px;font-size:17px;white-space:nowrap}
+.vollbild .blob .klein{max-width:270px;margin:12px auto 0}
+.vollbild .blob .chips{max-width:270px;margin-left:auto;margin-right:auto}
 .vollbild .schliessen{position:absolute;z-index:2;top:max(12px,env(safe-area-inset-top));right:16px;width:44px;height:44px;border-radius:50%;background:var(--zitrone);color:var(--wald);
   display:flex;align-items:center;justify-content:center;font:700 28px var(--hand);text-decoration:none;border:2px solid var(--wald)}
 .uhr{font:900 clamp(64px,21vw,96px)/1 var(--serif);margin:12px 0 4px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
@@ -405,7 +408,7 @@ function start() {
 
   <a class="knopf gelb" href="#/auszeit/frei">${svg('handy')}Einfach mal offline</a>
   <a class="knopf leise" href="#/tagebuch">Mein Auszeit-Tagebuch</a>
-  ${istApp ? '' : `<p class="tipp">Tipp: Leg dir diese Seite auf den Startbildschirm. Auf dem iPhone über das Teilen-Symbol und „Zum Home-Bildschirm“, bei Android über das Menü ⋮ und „Zum Startbildschirm hinzufügen“. Dann funktioniert sie auch ohne Internet.</p>`}
+  ${istApp ? '' : `<p class="tipp">Tipp: Leg dir diese Seite auf den Home-Bildschirm. Dazu unten in Safari auf das Teilen-Symbol tippen und „Zum Home-Bildschirm“ wählen. Dann funktioniert sie auch ohne Internet.</p>`}
   <footer class="fuss"><div class="karo"></div><p>more crafting, less screen time</p></footer>`;
 
   $$('.chip[data-g]').forEach(b => b.onclick = () => {
@@ -471,7 +474,8 @@ function geschenkSeite(nr) {
       <div class="d-tags"><span>${g.zeit}</span>${g.lust.map(l => `<span>${LUST[l]}</span>`).join('')}</div>
       ${e ? `<span class="stempel${frischGestempelt === nr ? ' neu' : ''}">Geschafft</span>` : ''}
     </header>
-    <section class="blatt"><h2>Was drin ist</h2><ul class="funkelliste">${g.inhalt.map(t => `<li>${FUNKEL}${t}</li>`).join('')}</ul></section>
+    <section class="blatt"><h2>Was drin ist</h2><ul class="funkelliste">${g.inhalt.map(t => `<li>${FUNKEL}${t}</li>`).join('')}</ul>
+      ${g.brauchst ? `<h3 style="font-size:19px;margin:16px 0 4px">Das brauchst du noch</h3><ul class="funkelliste">${g.brauchst.map(t => `<li>${FUNKEL}${t}</li>`).join('')}</ul>` : ''}</section>
     <section class="blatt"><h2>So geht’s</h2><ol class="schritte">${g.schritte.map(t => `<li>${t}</li>`).join('')}</ol></section>
     <section class="blatt"><h2>Tipps</h2><ul class="funkelliste">${g.tipps.map(t => `<li>${FUNKEL}${t}</li>`).join('')}</ul></section>
     <section class="poster">${posterSterne()}<div class="blob"><div class="hand">Detox-Aufgabe</div><p>${g.detox}</p></div></section>
@@ -585,8 +589,8 @@ function auszeitSeite(arg) {
     const zeichne = () => {
       app.innerHTML = rahmen(`<div class="hand">${titel}</div><div class="uhr">${fmtUhr(wahlMin * 60000)}</div>
         <div class="chips">${[10, 15, 20, 30, 45, 60, 90].map(m => `<button class="chip${m === wahlMin ? ' an' : ''}" data-m="${m}">${m}</button>`).join('')}</div>
-        <button class="knopf" id="start">${svg('handy')}Handy weg, los geht’s</button>
-        <p class="klein">Lass die Seite offen und leg das Handy umgedreht weg. Wenn die Zeit um ist, klingelt es leise. Wie oft du zwischendurch zum Handy greifst, wird gezählt.</p>`);
+        <button class="knopf" id="start">${svg('handy')}Los geht’s</button>
+        <p class="klein">Seite offen lassen, Handy umgedreht weglegen. Am Ende ertönt ein Gong, wenn das iPhone nicht auf lautlos steht. Jeder Griff zum Handy wird gezählt.</p>`);
       $$('.chip[data-m]').forEach(b => b.onclick = () => { wahlMin = +b.dataset.m; zeichne(); });
       $('#start').onclick = () => {
         tonBereit();
